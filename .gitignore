@@ -9,3 +9,4 @@ __pycache__/
 *.npz
 credentials.json
 token.json
+/models
