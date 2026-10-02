@@ -1,0 +1,48 @@
+stages:
+
+  prepare:
+    cmd: python src/prepare.py
+    deps:
+      - src/prepare.py
+    outs:
+      - data/raw/x_train.npy
+      - data/raw/y_train.npy
+      - data/raw/x_test.npy
+      - data/raw/y_test.npy
+
+  preprocess:
+    cmd: python src/preprocess.py
+    deps:
+      - src/preprocess.py
+      - data/raw
+    params:
+      - preprocess
+    outs:
+      - data/processed/x_train.npy
+      - data/processed/y_train.npy
+      - data/processed/x_val.npy
+      - data/processed/y_val.npy
+      - data/processed/x_test.npy
+      - data/processed/y_test.npy
+
+  train:
+    cmd: python src/train.py
+    deps:
+      - src/train.py
+      - data/processed
+    params:
+      - train
+
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+      - src/evaluate.py
+      - data/processed/x_test.npy
+      - data/processed/y_test.npy
+      - models/fashion_mnist_ann.h5
+    outs:
+      - models/confusion_matrix.npy
+    metrics:
+      - models/metrics.json:
+          cache: false
+

@@ -1,0 +1,116 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python src/prepare.py
+    deps:
+    - path: src/prepare.py
+      hash: md5
+      md5: 4afe6edf327f9f00f850e2702da628a2
+      size: 424
+    outs:
+    - path: data/raw/x_test.npy
+      hash: md5
+      md5: 4156b9580740fd6c4b4d9e769559ff1f
+      size: 7840128
+    - path: data/raw/x_train.npy
+      hash: md5
+      md5: ae10a82bc1b876b714fcf03a1b657f7c
+      size: 47040128
+    - path: data/raw/y_test.npy
+      hash: md5
+      md5: e6d24ffff98bc973b3c14df1b4a56631
+      size: 10128
+    - path: data/raw/y_train.npy
+      hash: md5
+      md5: 2d0fed45dac68b413b0442c431eb4cd0
+      size: 60128
+  preprocess:
+    cmd: python src/preprocess.py
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: 23b0000338669d2c61217dbd94633aa0.dir
+      size: 54950512
+      nfiles: 4
+    - path: src/preprocess.py
+      hash: md5
+      md5: bcd52985936bbbff982642a2e51e451d
+      size: 1074
+    params:
+      params.yaml:
+        preprocess:
+          test_size: 0.1
+          random_state: 42
+    outs:
+    - path: data/processed/x_test.npy
+      hash: md5
+      md5: b2ec522e81e966822712b8ecf0af1412
+      size: 31360128
+    - path: data/processed/x_train.npy
+      hash: md5
+      md5: e394edb71e50baa77118087a4abe672d
+      size: 169344128
+    - path: data/processed/x_val.npy
+      hash: md5
+      md5: cc08187eba15cbee50c22855021fba47
+      size: 18816128
+    - path: data/processed/y_test.npy
+      hash: md5
+      md5: e6d24ffff98bc973b3c14df1b4a56631
+      size: 10128
+    - path: data/processed/y_train.npy
+      hash: md5
+      md5: 97cd9296adfcc085a99dbc465bf56788
+      size: 54128
+    - path: data/processed/y_val.npy
+      hash: md5
+      md5: 5b3da0c838a1e0bbb9669529dded4516
+      size: 6128
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: data/processed
+      hash: md5
+      md5: 12be1216b23b003beee7cc6125a0222b.dir
+      size: 219590768
+      nfiles: 6
+    - path: src/train.py
+      hash: md5
+      md5: df9413e2356e0813ed84dbc57cffd48c
+      size: 1304
+    params:
+      params.yaml:
+        train:
+          hidden_units: 256
+          dropout: 0.3
+          learning_rate: 0.001
+          epochs: 15
+          batch_size: 128
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+    - path: data/processed/x_test.npy
+      hash: md5
+      md5: b2ec522e81e966822712b8ecf0af1412
+      size: 31360128
+    - path: data/processed/y_test.npy
+      hash: md5
+      md5: e6d24ffff98bc973b3c14df1b4a56631
+      size: 10128
+    - path: models/fashion_mnist_ann.h5
+      hash: md5
+      md5: 263e0c2bc570709dc980b2037182ba21
+      size: 2466904
+    - path: src/evaluate.py
+      hash: md5
+      md5: 1df2b547a5ac95876cccea99a4862228
+      size: 822
+    outs:
+    - path: models/confusion_matrix.npy
+      hash: md5
+      md5: 3952b1e833b2712c274e6a13bd43a5c3
+      size: 928
+    - path: models/metrics.json
+      hash: md5
+      md5: 7845bdbaa6ed155d32ef82d6a4ee135b
+      size: 81
