@@ -4,7 +4,7 @@ preprocess:
 
 train:
   hidden_units: 128
-  dropout: 0.3
+  dropout: 0.2
   learning_rate: 0.001
   epochs: 15
   batch_size: 128
