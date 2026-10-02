@@ -1,4 +1,4 @@
 # Fashion-MINST ANN Pipeline
 
 A reproducible TensorFlow Artificial Neural Network pipeline for Fashion-MNIST classification using Git and DVC.
-
+This project demonstrates Git and DVC based machine learning workflows.
