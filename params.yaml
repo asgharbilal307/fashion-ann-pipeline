@@ -3,7 +3,7 @@ preprocess:
   random_state: 42
 
 train:
-  hidden_units: 128
+  hidden_units: 256
   dropout: 0.2
   learning_rate: 0.001
   epochs: 15
