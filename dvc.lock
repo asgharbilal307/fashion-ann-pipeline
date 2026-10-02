@@ -81,7 +81,7 @@ stages:
     params:
       params.yaml:
         train:
-          hidden_units: 256
+          hidden_units: 128
           dropout: 0.3
           learning_rate: 0.001
           epochs: 15
@@ -99,8 +99,8 @@ stages:
       size: 10128
     - path: models/fashion_mnist_ann.h5
       hash: md5
-      md5: 263e0c2bc570709dc980b2037182ba21
-      size: 2466904
+      md5: cdfa9e52f9486c80e8aeca7588dbf44b
+      size: 1245272
     - path: src/evaluate.py
       hash: md5
       md5: 1df2b547a5ac95876cccea99a4862228
@@ -108,9 +108,9 @@ stages:
     outs:
     - path: models/confusion_matrix.npy
       hash: md5
-      md5: 3952b1e833b2712c274e6a13bd43a5c3
+      md5: e1158f4077dbf385d3ccb9bea76028c5
       size: 928
     - path: models/metrics.json
       hash: md5
-      md5: 7845bdbaa6ed155d32ef82d6a4ee135b
-      size: 81
+      md5: dbedac833801d7cc491ae6eba852e2ae
+      size: 80
