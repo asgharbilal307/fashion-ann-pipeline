@@ -17,13 +17,6 @@ stages:
       - data/raw
     params:
       - preprocess
-    outs:
-      - data/processed/x_train.npy
-      - data/processed/y_train.npy
-      - data/processed/x_val.npy
-      - data/processed/y_val.npy
-      - data/processed/x_test.npy
-      - data/processed/y_test.npy
 
   train:
     cmd: python src/train.py
