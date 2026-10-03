@@ -43,7 +43,7 @@ history = model.fit(
     verbose=1
 )
 
-model.save("models/fashion_mnist_ann.h5")
+model.save("models/model.h5")
 
 history_df = pd.DataFrame(history.history)
 history_df.to_csv("models/history.csv", index=False)

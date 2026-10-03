@@ -25,6 +25,8 @@ stages:
       - data/processed
     params:
       - train
+    outs:
+      - models/model.h5
 
   evaluate:
     cmd: python src/evaluate.py
@@ -32,10 +34,10 @@ stages:
       - src/evaluate.py
       - data/processed/x_test.npy
       - data/processed/y_test.npy
-      - models/fashion_mnist_ann.h5
+      - models/model.h5
     outs:
-      - models/confusion_matrix.npy
+      - models/confusion_matrix.png
     metrics:
-      - models/metrics.json:
+      - metrics.json:
           cache: false
 
